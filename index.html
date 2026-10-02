@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Spider Adventure Ticket</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@500;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;font-family:Nunito,Arial,sans-serif;color:#fff}
+body{overflow-x:hidden;background:linear-gradient(135deg,#080b22,#17245e 42%,#0d102e 70%,#7a071c)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(30deg,transparent 48%,#9bbcff 49%,transparent 51%),linear-gradient(150deg,transparent 48%,#9bbcff 49%,transparent 51%);background-size:95px 95px}
+.page{min-height:100vh;position:relative;padding:22px 0 55px}
+.page.hidden{display:none}
+.container{width:min(1050px,92%);margin:auto;position:relative;z-index:2}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.logo{font:36px "Bebas Neue";letter-spacing:2px;text-shadow:3px 3px #070817}.logo span{color:#ff4050}
+.badge{font-size:11px;font-weight:900;padding:9px 14px;border:1px solid #fff4;border-radius:25px;background:#080b22aa}
+.hero{min-height:650px;border-radius:34px;overflow:hidden;padding:35px 42px;background:linear-gradient(145deg,#b70d21 0%,#e51d36 30%,#253f9a 68%,#080b22 100%);box-shadow:0 28px 65px #0008,inset 0 1px #fff5;display:grid;grid-template-columns:1fr 1fr;align-items:center}
+.kicker{font-size:12px;letter-spacing:4px;font-weight:900;color:#dbe5ff}
+h1{font:clamp(68px,9vw,110px)/.78 "Bebas Neue";text-shadow:7px 8px #080a1d;margin:13px 0}
+h1 span{color:#ff4655}.hero p{max-width:470px;line-height:1.65;color:#e5eaff}
+.cta{border:0;border-radius:15px;padding:15px 25px;margin-top:24px;background:linear-gradient(100deg,#080a19,#151e55);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 7px #03040c,0 15px 30px #0006;transition:.2s}.cta:hover{transform:translateY(-4px)}
+.art{height:390px;position:relative}
+.spider{position:absolute;left:50%;top:50%;width:245px;height:310px;transform:translate(-50%,-50%);animation:spiderFloat 3s ease-in-out infinite;filter:drop-shadow(18px 25px 14px #0009)}
+.s-head{position:absolute;left:64px;top:12px;width:118px;height:115px;border-radius:50% 50% 44% 44%;background:linear-gradient(145deg,#ff4050 0%,#c10d23 48%,#1b0c2e 100%);border:6px solid #080914}
+.s-eye{position:absolute;top:34px;width:42px;height:62px;background:linear-gradient(145deg,#f8fbff,#9fb8ff);border:5px solid #080914}.s-eye.l{left:10px;transform:skew(-12deg) rotate(17deg)}.s-eye.r{right:10px;transform:skew(12deg) rotate(-17deg)}
+.s-body{position:absolute;left:43px;top:105px;width:160px;height:165px;border-radius:48% 48% 34% 34%;background:linear-gradient(145deg,#e91d36 0%,#8d0b21 42%,#15245f 100%);border:7px solid #080914}
+.chest{position:absolute;z-index:3;left:100px;top:130px;width:48px;height:48px;border-radius:50%;background:linear-gradient(145deg,#ff3f4f,#be0c23);border:3px solid #080914;color:#eaf1ff;text-align:center;line-height:42px;font-size:28px}
+.s-leg{position:absolute;width:125px;height:18px;border-radius:20px;background:linear-gradient(90deg,#090a17,#1f317e);border:2px solid #080914}
+.s-leg.a{left:-15px;top:135px;transform:rotate(28deg)}.s-leg.b{left:-20px;top:190px;transform:rotate(5deg)}.s-leg.c{left:-8px;top:240px;transform:rotate(-27deg)}
+.s-leg.d{right:-15px;top:135px;transform:rotate(-28deg)}.s-leg.e{right:-20px;top:190px;transform:rotate(-5deg)}.s-leg.f{right:-8px;top:240px;transform:rotate(27deg)}
+@keyframes spiderFloat{50%{transform:translate(-50%,-58%) rotateY(12deg) rotateZ(1deg)}}
+.float-web{position:absolute;width:190px;height:190px;border:2px solid #c6d4ff66;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 35px #c6d4ff18,0 0 0 70px #c6d4ff12;animation:webPulse 2.8s infinite}
+@keyframes webPulse{50%{transform:translate(-50%,-50%) scale(1.08);opacity:.7}}
+/* PAGE TICKET */
+.ticket-page{background:linear-gradient(135deg,#07091d,#111d50 45%,#1b0717 100%)}
+.ticket-page .container{max-width:760px}
+.ticket-card{margin-top:30px;background:linear-gradient(145deg,#161b4b,#0c0d27 58%,#3c0714);border:1px solid #fff2;border-radius:30px;padding:28px;box-shadow:0 25px 65px #0009}
+.form-title{font:44px "Bebas Neue";letter-spacing:1px;margin-bottom:20px}.form-title span{color:#ff4350}
+label{display:block;color:#cbd6ff;font-size:11px;font-weight:900;margin:13px 0 7px}
+input,select{width:100%;padding:14px 15px;border:1px solid #ffffff18;border-radius:13px;background:#f3f6ff;color:#14182f;font-size:14px;font-weight:700;outline:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.full{width:100%;text-align:center}
+.back{background:transparent;box-shadow:none;border:1px solid #fff3;margin:0 0 8px;padding:9px 14px;font-size:12px}
+/* result */
+.modal{display:none;position:fixed;inset:0;background:#030516e8;backdrop-filter:blur(10px);z-index:20;align-items:center;justify-content:center;padding:18px}
+.modal.show{display:flex}
+.result{width:min(620px,100%);background:#f2f5ff;color:#15182c;border-radius:28px;overflow:hidden;box-shadow:0 30px 80px #000}
+.result-head{padding:25px;background:linear-gradient(120deg,#9b0a20,#df1d38 45%,#1b3b91);color:#fff}
+.result-head h2{font:43px "Bebas Neue";letter-spacing:2px}
+.close{float:right;background:#fff2;border:0;color:#fff;border-radius:10px;padding:5px 12px;font-size:23px;cursor:pointer}
+.result-body{padding:24px}
+.ticket{border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#dfe8ff,#fff,#d9e2ff);box-shadow:0 10px 25px #1112}
+.ticket-top{padding:22px;background:linear-gradient(110deg,#b50b22,#e31d39 48%,#183e9b);color:#fff}
+.ticket-name{font:40px "Bebas Neue";letter-spacing:2px}.ticket-sub{font-size:10px;letter-spacing:2px;font-weight:900}
+.ticket-info{padding:21px}.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed #8e9bc2}.row span{font-size:10px;color:#65719b;font-weight:900}.row b{text-align:right;font-size:13px}
+.barcode{height:55px;margin-top:16px;background:repeating-linear-gradient(90deg,#080a17 0 2px,transparent 2px 5px,#080a17 5px 8px,transparent 8px 11px)}.code{text-align:center;font-size:9px;letter-spacing:4px;color:#4f5a80;margin-top:5px}
+.actions{display:flex;gap:10px}.actions .cta{flex:1}
+@media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center;padding:30px 22px}.hero p{margin:auto}.art{height:320px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- HALAMAN 1: HOME / SPIDER ADVENTURE -->
+<section id="home" class="page">
+<div class="container">
+<header><div class="logo">SPIDER<span>VERSE</span> 🕷️</div><div class="badge">● SPIDER ADVENTURE</div></header>
+<div class="hero">
+<div>
+<div class="kicker">WELCOME TO THE ULTIMATE RIDE</div>
+<h1>SPIDER<br><span>ADVENTURE</span></h1>
+<p>Masuki wahana penuh aksi dan petualangan. Rasakan sensasi berayun bersama Spider Adventure dan taklukkan setiap tantangan!</p>
+<button class="cta" onclick="goTicket()">🕷️ DAFTAR TIKET</button>
+</div>
+<div class="art">
+<div class="float-web"></div>
+<div class="spider">
+<div class="s-leg a"></div><div class="s-leg b"></div><div class="s-leg c"></div><div class="s-leg d"></div><div class="s-leg e"></div><div class="s-leg f"></div>
+<div class="s-head"><div class="s-eye l"></div><div class="s-eye r"></div></div>
+<div class="s-body"></div><div class="chest">✦</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HALAMAN 2: PENDAFTARAN TIKET, TERPISAH -->
+<section id="ticketPage" class="page ticket-page hidden">
+<div class="container">
+<header><div class="logo">SPIDER<span>VERSE</span> 🎟️</div><div class="badge">TICKET REGISTRATION</div></header>
+<button class="cta back" onclick="goHome()">← KEMBALI KE SPIDER ADVENTURE</button>
+<div class="ticket-card">
+<div class="form-title">🎟️ DAFTAR <span>TIKET</span></div>
+<form id="ticketForm">
+<label>NAMA PENGUNJUNG</label><input id="name" required placeholder="Masukkan nama kamu">
+<div class="grid">
+<div><label>TANGGAL</label><input id="date" type="date" required></div>
+<div><label>JUMLAH TIKET</label><select id="qty"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+</div>
+<label>JENIS TIKET</label>
+<select id="type"><option>Regular — Rp75.000</option><option>VIP — Rp125.000</option><option>Ultimate — Rp175.000</option></select>
+<label>JAM MASUK</label>
+<select id="session"><option>10:00 - 12:00</option><option>13:00 - 15:00</option><option>16:00 - 18:00</option><option>19:00 - 21:00</option></select>
+<button class="cta full" type="submit">✨ SELESAI & LIHAT TIKET</button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- POPUP HASIL TIKET -->
+<div class="modal" id="modal">
+<div class="result">
+<div class="result-head"><button class="close" onclick="closeTicket()">×</button><div style="font-size:11px;letter-spacing:3px;font-weight:900">TICKET CONFIRMED ✓</div><h2>SPIDER ADVENTURE</h2></div>
+<div class="result-body">
+<p style="text-align:center;color:#9b0a20;font-weight:900;margin-bottom:14px">🕷️ TIKET BERHASIL DIBUAT! 🕸️</p>
+<div class="ticket">
+<div class="ticket-top"><div class="ticket-name">SPIDER ADVENTURE</div><div class="ticket-sub">ADMIT ONE • WEB RIDE EXPERIENCE</div></div>
+<div class="ticket-info">
+<div class="row"><span>NAMA</span><b id="rName"></b></div>
+<div class="row"><span>TANGGAL</span><b id="rDate"></b></div>
+<div class="row"><span>JENIS TIKET</span><b id="rType"></b></div>
+<div class="row"><span>SESI MASUK</span><b id="rSession"></b></div>
+<div class="row"><span>JUMLAH</span><b id="rQty"></b></div>
+<div class="barcode"></div><div class="code" id="rCode"></div>
+</div></div>
+<div class="actions"><button class="cta" onclick="closeTicket()">↩ KEMBALI</button><button class="cta" onclick="window.print()">🖨️ CETAK</button></div>
+</div>
+</div>
+</div>
+
+<script>
+const home=document.getElementById('home'), ticketPage=document.getElementById('ticketPage'), modal=document.getElementById('modal');
+function goTicket(){home.classList.add('hidden');ticketPage.classList.remove('hidden');window.scrollTo(0,0)}
+function goHome(){ticketPage.classList.add('hidden');home.classList.remove('hidden');window.scrollTo(0,0)}
+function fmt(v){if(!v)return'-';let d=new Date(v+'T00:00:00');return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear()}
+document.getElementById('ticketForm').addEventListener('submit',function(e){
+e.preventDefault();
+let name=document.getElementById('name').value.trim(),date=document.getElementById('date').value,qty=document.getElementById('qty').value,type=document.getElementById('type').value,session=document.getElementById('session').value;
+document.getElementById('rName').textContent=name.toUpperCase();
+document.getElementById('rDate').textContent=fmt(date);
+document.getElementById('rType').textContent=type;
+document.getElementById('rSession').textContent=session;
+document.getElementById('rQty').textContent=qty+' TIKET';
+document.getElementById('rCode').textContent='SPIDER-'+Math.random().toString(36).slice(2,8).toUpperCase();
+modal.classList.add('show');
+});
+function closeTicket(){modal.classList.remove('show')}
+modal.addEventListener('click',e=>{if(e.target===modal)closeTicket()});
+</script>
+</body>
+</html>
